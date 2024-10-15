@@ -1,4 +1,5 @@
 Pipeline:
+
 → sbatch step1.a.submit.sh
 → python step1.a.py --vcf ${vcf} --keep ${keep} --phenoFile ${pheno} --monoThreshold  
       0.00093985 
@@ -29,5 +30,9 @@ Use jupyter notebook for step 5,7, and 7 to generate AAF, covariates and phenoty
 
 
 Use jupyter notebook for the final step 10
+
+
+
+
 
 
