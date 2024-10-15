@@ -10,13 +10,13 @@
 
 list_annot_run=$1 #list_annot_run=list_annot_run2 
 out_name=$2 #Run2_Count, Run3_Count .. so on
+export vcf=$3
+export RegeniefileName=$4
 
-#export vcf='./step1/SIOP_FAME_annotated.101524.vcf'
-export vcf='./step1/FAME.TopSignif_ENSEMBL_withNEAREST.100724.vcf'
-export RegeniefileName='SIOP_FAME.ALL.101524_responder'
 regenie_out='./step8_to_10/'${RegeniefileName}'.tsv'
 output_path='./step8_to_10/'
 
+echo $vcf
 echo $regenie_out
 echo running for $list_annot_run
 python step9.py --annotatedVCF ${vcf} --regenie_output ${regenie_out} --output_path ${output_path} --output_name ${out_name} --list_annot_run ${list_annot_run}
