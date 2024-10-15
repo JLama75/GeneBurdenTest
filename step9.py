@@ -22,7 +22,7 @@ parser.add_argument('--annotatedVCF', required=True, help="Path to the annotated
 parser.add_argument('--regenie_output', required=True, help="Path to the Regenie output file")
 parser.add_argument('--output_path', required=True, help="Directory path where output files will be saved")
 parser.add_argument('--output_name', required=True, help="Name for the output files")
-parser.add_argument('--list_annot_run', required=True, nargs='+', help="List of annotations to run")
+parser.add_argument('--list_annot_run', required=True, help="Name of the annotation run out of four runs: list_annot_run1, list_annot_run2, list_annot_run3 or list_annot_run4")
 
 #Add {args.annotatedVCF}
 # Parse the arguments
@@ -34,7 +34,7 @@ if not os.path.exists(args.output_path):
 
 file_vcf=args.annotatedVCF
 list_annot_run=args.list_annot_run
-
+print(list_annot_run)
 GT_control='./step1/output4_GT_control.tsv'
 GT_case='./step1/output4_GT_case.tsv'
 
@@ -301,7 +301,7 @@ condition_mask2 = df_regenie['ID'].str.contains('Mask2')
 condition_mask3 = df_regenie['ID'].str.contains('Mask3')
 condition_mask4 = df_regenie['ID'].str.contains('Mask4')
 condition_af01 = df_regenie['ID'].str.contains('0.01')
-
+print(list_annot_run == list_annot_run1) 
 if list_annot_run == list_annot_run1:
     print('RUNNING run1')
     combined_condition_af01 = condition_mask1 & condition_af01
@@ -323,7 +323,7 @@ elif list_annot_run == list_annot_run4:
     df_regenie_Mask_af01 = df_regenie[combined_condition_af01]
 
 print("regenie summary statistics for selected Mask: \n")
-print(df_regenie)
+
 print(df_regenie_Mask_af01)
 
 
