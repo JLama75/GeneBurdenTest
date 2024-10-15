@@ -33,8 +33,12 @@ if not os.path.exists(args.output_path):
     os.makedirs(args.output_path)
 
 file_vcf=args.annotatedVCF
+
 list_annot_run=args.list_annot_run
+
 print(list_annot_run)
+#list_annot_run1
+print(args.output_name)
 GT_control='./step1/output4_GT_control.tsv'
 GT_case='./step1/output4_GT_case.tsv'
 
@@ -301,26 +305,31 @@ condition_mask2 = df_regenie['ID'].str.contains('Mask2')
 condition_mask3 = df_regenie['ID'].str.contains('Mask3')
 condition_mask4 = df_regenie['ID'].str.contains('Mask4')
 condition_af01 = df_regenie['ID'].str.contains('0.01')
-print(list_annot_run == list_annot_run1) 
-if list_annot_run == list_annot_run1:
+print(list_annot_run == "list_annot_run1") 
+
+if list_annot_run == "list_annot_run1":
     print('RUNNING run1')
     combined_condition_af01 = condition_mask1 & condition_af01
     df_regenie_Mask_af01 = df_regenie[combined_condition_af01]
+    list_annot_run=list_annot_run1
 
-elif list_annot_run == list_annot_run2:
+elif list_annot_run == "list_annot_run2":
     print('RUNNING run2')
     combined_condition_af01 = condition_mask2 & condition_af01
     df_regenie_Mask_af01 = df_regenie[combined_condition_af01]
+    list_annot_run=list_annot_run2
 
-elif list_annot_run == list_annot_run3:
+elif list_annot_run == "list_annot_run3":
     print('RUNNING run3')
     combined_condition_af01 = condition_mask3 & condition_af01
     df_regenie_Mask_af01 = df_regenie[combined_condition_af01]
+    list_annot_run=list_annot_run3
 
-elif list_annot_run == list_annot_run4:
+elif list_annot_run == "list_annot_run4":
     print('RUNNING run4')
     combined_condition_af01 = condition_mask4 & condition_af01
     df_regenie_Mask_af01 = df_regenie[combined_condition_af01]
+    list_annot_run=list_annot_run4
 
 print("regenie summary statistics for selected Mask: \n")
 
@@ -347,7 +356,7 @@ print(dicts_skato)
 
 output_step2=pd.DataFrame()
 for annot in list_annot_run:
-    print(annot)
+    print("annot: ",annot)
     out_step1='list_'+annot+suffix
     #list_annot_directory='/data/Segre_Lab/users/jlama/WES_new.ALL_050824/GeneBurden/FAME/step2/'
     out1_step1=os.path.join(list_annot_directory, out_step1)
@@ -413,15 +422,16 @@ prefix_control_nonMiss='nonMiss_control_'
 prefix_case_nonMiss='nonMiss_case_'
 output_step2_control_GT=output_step2.filter(like=prefix_control_GT, axis=1)
 print(output_step2_control_GT)
+
 output_step2_case_GT=output_step2.filter(like=prefix_case_GT, axis=1)
 output_step2_control_nonMiss=output_step2.filter(like=prefix_control_nonMiss, axis=1)
 output_step2_case_nonMiss=output_step2.filter(like=prefix_case_nonMiss, axis=1)
 output_step2['CountGT_control_All']=output_step2_control_GT.sum(axis=1, skipna=True)
-print(output_step2['CountGT_control_All'])
+print(output_step2)
+
 output_step2['CountGT_case_All']=output_step2_case_GT.sum(axis=1, skipna=True)
 output_step2['CountGT_control_nonMiss']=output_step2_control_nonMiss.sum(axis=1, skipna=True)
 output_step2['CountGT_case_nonMiss']=output_step2_case_nonMiss.sum(axis=1, skipna=True)
-
 output_step2['Odds_Ratio']=((output_step2['CountGT_case_All']+1)*(output_step2['CountGT_control_nonMiss']-output_step2['CountGT_control_All']+1))/((output_step2['CountGT_control_All']+1)*(output_step2['CountGT_case_nonMiss']-output_step2['CountGT_case_All']+1))
 
 array_chisquare=output_step2.loc[:,['CountGT_case_All','CountGT_case_nonMiss','CountGT_control_All','CountGT_control_nonMiss']]
@@ -441,5 +451,3 @@ output_step2['P_Chi-Square']=p
 Dir=os.path.join(args.output_path, args.output_name, ".tsv")
 print(Dir)
 output_step2.to_csv(Dir, sep='\t', index=None)
-
-
