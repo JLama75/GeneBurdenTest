@@ -1,0 +1,4 @@
+Mask1 LoF1
+Mask2 LoF1,LoF2,missense
+Mask3 LoF1,LoF2,missense,moderate,low,modifier
+Mask4 synonymous
