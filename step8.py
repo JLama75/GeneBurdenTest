@@ -11,12 +11,14 @@ import matplotlib.pyplot as plt
 #Set up argument parser
 parser = argparse.ArgumentParser(description="Process output of Regenie")
 parser.add_argument('--regenie', required=True, help="Path to the regenie output file")
-parser.add_argument('--outFile', required=True, help="Path to the output file")
 # Parse the arguments
 args = parser.parse_args()
 
-regenie=args.regenie
-out=args.outFile
+DIR1='./step7/'
+DIR2='./step8_to_10/'
+regenie= os.path.join(DIR1, args.regenie + ".regenie")
+out= os.path.join(DIR2, args.regenie + ".tsv")
+
 # Open the input CSV file and output CSV file
 with open(regenie, 'r') as input_file, open(out, 'w', newline='') as output_file:
     # Create CSV reader and writer objects
