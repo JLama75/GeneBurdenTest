@@ -19,6 +19,9 @@ DIR2='./step8_to_10/'
 regenie= os.path.join(DIR1, args.regenie + ".regenie")
 out= os.path.join(DIR2, args.regenie + ".tsv")
 
+print("your input: ", regenie, "\n")
+print("your output: ", out, "\n")
+
 # Open the input CSV file and output CSV file
 with open(regenie, 'r') as input_file, open(out, 'w', newline='') as output_file:
     # Create CSV reader and writer objects
@@ -76,6 +79,9 @@ df_regenie_Mask4 = df_regenie[combined_condition_4]
 sorted_df_regenie_Mask4 = df_regenie_Mask4.sort_values(by='LOG10P', ascending=False)
 print("Mask4 /n")
 print(sorted_df_regenie_Mask4)
+
+for i in range(1, 5):
+    print(f"Outputting Regenie table for run {i} to ./step8_to_10/Regenie_Run{i}.tsv")
 
 sorted_df_regenie_Mask1.to_csv('./step8_to_10/Regenie_Run1.tsv', index=None, sep='\t')
 sorted_df_regenie_Mask2.to_csv('./step8_to_10/Regenie_Run2.tsv', index=None, sep='\t')
