@@ -451,5 +451,3 @@ output_step2['P_Chi-Square']=p
 Dir=os.path.join(args.output_path, args.output_name + ".tsv")
 print(Dir)
 output_step2.to_csv(Dir, sep='\t', index=None)
-
-
