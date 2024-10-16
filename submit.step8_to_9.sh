@@ -11,5 +11,5 @@ echo -e "running step8 ..."
 python step8.py --regenie './step7/'${RegeniefileName}'.regenie' --outFile './step8_to_10/'${RegeniefileName}'.tsv'
 
 echo -e "running step9..."
-./slurm.submit.step9.sh --vcf './step1/FAME.TopSignif_ENSEMBL_withNEAREST.100724.vcf' --RegeniefileName 'SIOP_FAME.ALL.101524_responder' 
+./slurm.step9.sh --vcf './step1/FAME.TopSignif_ENSEMBL_withNEAREST.100724.vcf' --RegeniefileName 'SIOP_FAME.ALL.101524_responder' 
 
