@@ -16,6 +16,7 @@ parser.add_argument('--Dir', required=True, help="Path to the input foders")
 args = parser.parse_args()
 
 Dir=args.Dir #./step8_to_10/
+print("Output Directory:", Dir)
 
 Count1=os.path.join(Dir, "Run1_Count.tsv")
 Count2=os.path.join(Dir, "Run2_Count.tsv")
@@ -53,7 +54,8 @@ def calculate_FDR(df, p_value_column, new_column='FDR_BH_p_value'):
     
     # Return the updated DataFrame
     return df
-
+#from scipy import stats
+#stats.false_discovery_control(ps)
 
 df_run4_gb=pd.read_csv(Regenie4, sep='\t')
 df_run4_gb=df_run4_gb[['GENE','P']]
