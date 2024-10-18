@@ -10,7 +10,7 @@ import xlsxwriter
 parser = argparse.ArgumentParser(description="Final data preparation for each Runs")
 
 # Add arguments
-parser.add_argument('--Dir', required=True, help="Path to the input foders")
+parser.add_argument('--Dir', required=True, help="Path to the input folders")
 
 # Parse the arguments
 args = parser.parse_args()
