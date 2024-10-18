@@ -8,5 +8,7 @@
 
 echo -e "running step10..."
 #dir=$1
+#trait=$2
 dir='./step8_to_10'
-python step10.py --Dir ${dir}
+trait='FAME.Responders'
+python step10.py --Dir ${dir} --traitName ${trait} 
