@@ -8,5 +8,5 @@
 
 echo -e "running step10..."
 #dir=$1
-dir='/data/Segre_Lab/users/jlama/WES_new.ALL_050824/GeneBurden/FAME_updated/step8_to_10'
+dir='./step8_to_10'
 python step10.py --Dir ${dir}
