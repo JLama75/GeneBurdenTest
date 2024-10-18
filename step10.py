@@ -11,12 +11,16 @@ parser = argparse.ArgumentParser(description="Final data preparation for each Ru
 
 # Add arguments
 parser.add_argument('--Dir', required=True, help="Path to the input folders")
+parser.add_argument('--traitName', required=True, help="Name of the your trait/study")
 
 # Parse the arguments
 args = parser.parse_args()
 
 Dir=args.Dir #./step8_to_10/
+trait=args.traitName #FAME_Responder
+
 print("Output Directory:", Dir)
+print("For Study: ", trait )
 
 Count1=os.path.join(Dir, "Run1_Count.tsv")
 Count2=os.path.join(Dir, "Run2_Count.tsv")
@@ -29,12 +33,12 @@ Regenie3=os.path.join(Dir, "Regenie_Run3.tsv")
 Regenie4=os.path.join(Dir, "Regenie_Run4.tsv")
 
 
-Out1=os.path.join(Dir, "Run1_merged_Count.tsv")
-Out2=os.path.join(Dir, "Run2_merged_Count.tsv")
-Out3=os.path.join(Dir, "Run3_merged_Count.tsv")
-Out4=os.path.join(Dir, "Run4_merged_Count.tsv")
+Out1=os.path.join(Dir, trait + "_Run1_merged_Count.tsv")
+Out2=os.path.join(Dir, trait + "_Run2_merged_Count.tsv")
+Out3=os.path.join(Dir, trait + "_Run3_merged_Count.tsv")
+Out4=os.path.join(Dir, trait + "_Run4_merged_Count.tsv")
 
-excelOut=os.path.join(Dir, "SummaryTable_allRuns.xlsx")
+excelOut=os.path.join(Dir, trait + "_SummaryTable_allRuns.xlsx") #./step8_to_10/FAME_Responder_SummaryTable_allRuns.xlsx
 
 def calculate_FDR(df, p_value_column, new_column='FDR_BH_p_value'):
     """
