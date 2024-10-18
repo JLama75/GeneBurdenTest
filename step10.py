@@ -119,9 +119,9 @@ print(f"Number of cols for run4: {df_run4.shape[1]}")
 df_run4.to_csv(Out4, index=None, sep='\t')
 
 with pd.ExcelWriter(excelOut, engine='xlsxwriter') as writer:
-    df_run1_gb.to_excel(writer, sheet_name='Run1_merged_Count', index=False)
-    df_run2_gb.to_excel(writer, sheet_name='Run2_merged_Count', index=False)
-    df_run3_gb.to_excel(writer, sheet_name='Run3_merged_Count', index=False)
-    df_run4_gb.to_excel(writer, sheet_name='Run4_merged_Count', index=False)
+    df_run1.to_excel(writer, sheet_name='Run1_merged_Count', index=False)
+    df_run2.to_excel(writer, sheet_name='Run2_merged_Count', index=False)
+    df_run3.to_excel(writer, sheet_name='Run3_merged_Count', index=False)
+    df_run4.to_excel(writer, sheet_name='Run4_merged_Count', index=False)
     
     
