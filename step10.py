@@ -79,6 +79,10 @@ print(f"Number of rows for run1: {df_run1.shape[0]}")
 print(f"Number of cols for run1: {df_run1.shape[1]}")
 
 df_run1.to_csv(Out1, index=None, sep='\t')
+# Bonferroni Correction
+BonferroniCutoff = 0.05 / df_run1.shape[0]
+print("BonferroniCutoff: ", BonferroniCutoff)
+Run1_sig = df_run1[(df_run1['P'] <= BonferroniCutoff) | (df_run1['FDR_BH_p_value'] <= 0.2)]
 
 df_run2_gb=pd.read_csv(Regenie2, sep='\t')
 df_run2_step2=pd.read_csv(Count2, sep='\t')
@@ -93,6 +97,12 @@ print(f"Number of rows for run2: {df_run2.shape[0]}")
 print(f"Number of cols for run2: {df_run2.shape[1]}")
 df_run2.to_csv(Out2, index=None, sep='\t')
 
+# Bonferroni Correction
+BonferroniCutoff = 0.05 / df_run2.shape[0]
+print("BonferroniCutoff: ", BonferroniCutoff)
+Run2_sig = df_run2[(df_run2['P'] <= BonferroniCutoff) | (df_run2['FDR_BH_p_value'] <= 0.2)]
+
+
 df_run3_gb=pd.read_csv(Regenie3, sep='\t')
 df_run3_step2=pd.read_csv(Count3, sep='\t')
 df_run3=pd.merge(df_run3_gb, df_run3_step2, left_on=['GENE'], right_on=['SNP'], how='inner')
@@ -106,6 +116,12 @@ print(f"Number of rows for run3: {df_run3.shape[0]}")
 print(f"Number of cols for run3: {df_run3.shape[1]}")
 df_run3.to_csv(Out3, index=None, sep='\t')
 
+# Bonferroni Correction
+BonferroniCutoff = 0.05 / df_run3.shape[0]
+print("BonferroniCutoff: ", BonferroniCutoff)
+Run3_sig = df_run1[(df_run3['P'] <= BonferroniCutoff) | (df_run3['FDR_BH_p_value'] <= 0.2)]
+
+
 df_run4_gb=pd.read_csv(Regenie4, sep='\t')
 df_run4_step2=pd.read_csv(Count4, sep='\t')
 df_run4=pd.merge(df_run4_gb, df_run4_step2, left_on=['GENE'], right_on=['SNP'], how='inner')
@@ -118,10 +134,18 @@ print(f"Number of rows for run4: {df_run4.shape[0]}")
 print(f"Number of cols for run4: {df_run4.shape[1]}")
 df_run4.to_csv(Out4, index=None, sep='\t')
 
+# Bonferroni Correction
+BonferroniCutoff = 0.05 / df_run4.shape[0]
+print("BonferroniCutoff: ", BonferroniCutoff)
+Run4_sig = df_run1[(df_run4['P'] <= BonferroniCutoff) | (df_run4['FDR_BH_p_value'] <= 0.2)]
+
 with pd.ExcelWriter(excelOut, engine='xlsxwriter') as writer:
     df_run1.to_excel(writer, sheet_name='Run1_merged_Count', index=False)
     df_run2.to_excel(writer, sheet_name='Run2_merged_Count', index=False)
     df_run3.to_excel(writer, sheet_name='Run3_merged_Count', index=False)
     df_run4.to_excel(writer, sheet_name='Run4_merged_Count', index=False)
-    
-    
+    Run1_sig.to_excel(writer, sheet_name='Run1_significant', index=False)
+    Run2_sig.to_excel(writer, sheet_name='Run2_significant', index=False)
+    Run3_sig.to_excel(writer, sheet_name='Run3_significant', index=False)
+    Run4_sig.to_excel(writer, sheet_name='Run4_significant', index=False)
+  
