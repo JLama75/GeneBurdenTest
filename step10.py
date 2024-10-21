@@ -70,13 +70,13 @@ def reorganize_columns(df):
     other_cols = df.columns[:-3]
     
     # Ensure that the dataframe has at least 14 columns before reorganizing
-    if len(other_cols) < 14:
+    if len(other_cols) < 15:
         print("DataFrame has fewer than 14 columns, skipping reorganization.")
         return df
     
     # Insert the last three columns after the 14th column (index 13)
-    cols_before_14th = other_cols[:14]
-    cols_after_14th = other_cols[14:]
+    cols_before_14th = other_cols[:15]
+    cols_after_14th = other_cols[15:]
     
     # Combine columns in the desired order
     new_column_order = list(cols_before_14th) + list(last_three_cols) + list(cols_after_14th)
