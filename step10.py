@@ -99,7 +99,6 @@ df_run1=df_run1.drop(['SNP'], axis=1)
 df_run1=pd.merge(df_run1,df_run4_gb, on=['GENE'], how='left')
 df_run1=calculate_FDR(df_run1, 'P')
 df_run1.fillna('NA', inplace=True)
-df_run1 = reorganize_columns(df_run1)
 print(df_run1)
 print(f"Number of rows for run1: {df_run1.shape[0]}")
 print(f"Number of cols for run1: {df_run1.shape[1]}")
@@ -111,6 +110,7 @@ print("BonferroniCutoff: ", BonferroniCutoff1)
 Run1_sig = df_run1[(df_run1['P'] <= BonferroniCutoff1) | (df_run1['FDR_BH_p_value'] <= 0.2)]
 
 df_run1['BonferroniCutoff'] = BonferroniCutoff1
+df_run1 = reorganize_columns(df_run1)
 df_run1.to_csv(Out1, index=None, sep='\t')
 
 ########################################################
@@ -123,11 +123,9 @@ df_run2=df_run2.drop(['SNP'], axis=1)
 df_run2=pd.merge(df_run2,df_run4_gb, on=['GENE'], how='left')
 df_run2=calculate_FDR(df_run2, 'P')
 df_run2.fillna('NA', inplace=True)
-df_run2 = reorganize_columns(df_run2)
 print(df_run2)
 print(f"Number of rows for run2: {df_run2.shape[0]}")
 print(f"Number of cols for run2: {df_run2.shape[1]}")
-
 
 # Bonferroni Correction
 BonferroniCutoff2 = 0.05 / df_run2.shape[0]
@@ -135,6 +133,7 @@ print("BonferroniCutoff: ", BonferroniCutoff2)
 Run2_sig = df_run2[(df_run2['P'] <= BonferroniCutoff2) | (df_run2['FDR_BH_p_value'] <= 0.2)]
 
 df_run2['BonferroniCutoff'] = BonferroniCutoff2
+df_run2 = reorganize_columns(df_run2)
 df_run2.to_csv(Out2, index=None, sep='\t')
 
 ########################################################
@@ -147,7 +146,6 @@ df_run3=df_run3.drop(['SNP'], axis=1)
 df_run3=pd.merge(df_run3,df_run4_gb, on=['GENE'], how='left')
 df_run3=calculate_FDR(df_run3, 'P')
 df_run3.fillna('NA', inplace=True)
-df_run3 = reorganize_columns(df_run3)
 print(df_run3)
 print(f"Number of rows for run3: {df_run3.shape[0]}")
 print(f"Number of cols for run3: {df_run3.shape[1]}")
@@ -159,8 +157,11 @@ print("BonferroniCutoff: ", BonferroniCutoff3)
 Run3_sig = df_run3[(df_run3['P'] <= BonferroniCutoff3) | (df_run3['FDR_BH_p_value'] <= 0.2)]
 
 df_run3['BonferroniCutoff'] = BonferroniCutoff3
+df_run3 = reorganize_columns(df_run3)
 df_run3.to_csv(Out3, index=None, sep='\t')
 
+################################################################################
+#RUN 4
 
 df_run4_gb=pd.read_csv(Regenie4, sep='\t')
 df_run4_step2=pd.read_csv(Count4, sep='\t')
