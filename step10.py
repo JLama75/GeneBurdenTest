@@ -62,6 +62,31 @@ def calculate_FDR(df, p_value_column, new_column='FDR_BH_p_value'):
 #from scipy import stats
 #stats.false_discovery_control(ps)
 
+def reorganize_columns(df):
+    # Get the last three columns
+    last_three_cols = df.columns[-3:]
+    
+    # Get all other columns except the last three
+    other_cols = df.columns[:-3]
+    
+    # Ensure that the dataframe has at least 14 columns before reorganizing
+    if len(other_cols) < 14:
+        print("DataFrame has fewer than 14 columns, skipping reorganization.")
+        return df
+    
+    # Insert the last three columns after the 14th column (index 13)
+    cols_before_14th = other_cols[:14]
+    cols_after_14th = other_cols[14:]
+    
+    # Combine columns in the desired order
+    new_column_order = list(cols_before_14th) + list(last_three_cols) + list(cols_after_14th)
+    
+    # Reorganize DataFrame
+    df_reorganized = df[new_column_order]
+    
+    return df_reorganized
+
+
 df_run4_gb=pd.read_csv(Regenie4, sep='\t')
 df_run4_gb=df_run4_gb[['GENE','P']]
 df_run4_gb.columns=['GENE','P-value.Run4']
@@ -74,7 +99,7 @@ df_run1=df_run1.drop(['SNP'], axis=1)
 df_run1=pd.merge(df_run1,df_run4_gb, on=['GENE'], how='left')
 df_run1=calculate_FDR(df_run1, 'P')
 df_run1.fillna('NA', inplace=True)
-
+df_run1 = reorganize_columns(df_run1)
 print(df_run1)
 print(f"Number of rows for run1: {df_run1.shape[0]}")
 print(f"Number of cols for run1: {df_run1.shape[1]}")
@@ -88,6 +113,9 @@ Run1_sig = df_run1[(df_run1['P'] <= BonferroniCutoff1) | (df_run1['FDR_BH_p_valu
 df_run1['BonferroniCutoff'] = BonferroniCutoff1
 df_run1.to_csv(Out1, index=None, sep='\t')
 
+########################################################
+#RUN2
+
 df_run2_gb=pd.read_csv(Regenie2, sep='\t')
 df_run2_step2=pd.read_csv(Count2, sep='\t')
 df_run2=pd.merge(df_run2_gb, df_run2_step2, left_on=['GENE'], right_on=['SNP'], how='inner')
@@ -95,7 +123,7 @@ df_run2=df_run2.drop(['SNP'], axis=1)
 df_run2=pd.merge(df_run2,df_run4_gb, on=['GENE'], how='left')
 df_run2=calculate_FDR(df_run2, 'P')
 df_run2.fillna('NA', inplace=True)
-
+df_run2 = reorganize_columns(df_run2)
 print(df_run2)
 print(f"Number of rows for run2: {df_run2.shape[0]}")
 print(f"Number of cols for run2: {df_run2.shape[1]}")
@@ -109,6 +137,8 @@ Run2_sig = df_run2[(df_run2['P'] <= BonferroniCutoff2) | (df_run2['FDR_BH_p_valu
 df_run2['BonferroniCutoff'] = BonferroniCutoff2
 df_run2.to_csv(Out2, index=None, sep='\t')
 
+########################################################
+#RUN3
 
 df_run3_gb=pd.read_csv(Regenie3, sep='\t')
 df_run3_step2=pd.read_csv(Count3, sep='\t')
@@ -117,7 +147,7 @@ df_run3=df_run3.drop(['SNP'], axis=1)
 df_run3=pd.merge(df_run3,df_run4_gb, on=['GENE'], how='left')
 df_run3=calculate_FDR(df_run3, 'P')
 df_run3.fillna('NA', inplace=True)
-
+df_run1 = reorganize_columns(df_run1)
 print(df_run3)
 print(f"Number of rows for run3: {df_run3.shape[0]}")
 print(f"Number of cols for run3: {df_run3.shape[1]}")
