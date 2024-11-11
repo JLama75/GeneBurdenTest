@@ -200,7 +200,8 @@ with open(GT_case) as inny:
 summary_GT_case['SNP']=list_ID
 summary_GT_case['CountGT_case']=list_case_GT
 summary_GT_case['nonMiss_case']=list_case_nonMiss
-summary_GT_control['individual_case']=list_individual
+#summary_GT_control['individual_case']=list_individual #bug fixed!
+summary_GT_case['individual_case']=list_individual
 
 summary_GT_case_control=pd.merge(summary_GT_control,summary_GT_case,on=['SNP'],how='inner')
 
