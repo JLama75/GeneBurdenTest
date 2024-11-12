@@ -29,6 +29,18 @@ parser.add_argument('--list_annot_run', required=True, help="Name of the annotat
 # Parse the arguments
 args = parser.parse_args()
 
+# Function to set the working directory
+def set_working_directory(user_defined_dir):
+    try:
+        # Change the current working directory to the user-defined directory
+        os.chdir(user_defined_dir)
+        print(f"Working directory changed to: {os.getcwd()}")
+    except Exception as e:
+        print(f"Error: {e}")
+        
+# Set the working directory
+set_working_directory(args.output_path)
+
 # Ensure output directory exists
 if not os.path.exists(args.output_path):
     os.makedirs(args.output_path)
