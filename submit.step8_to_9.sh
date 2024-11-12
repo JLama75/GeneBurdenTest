@@ -7,10 +7,11 @@
 #SBATCH --partition=medium,long,short
 
 export RegeniefileName='SIOP_FAME.ALL.101524_responder' #Change to your Regenie file name
+export outputDir='./' #Your current directory
 
 echo -e "running step8 ..."
 python step8.py --regenie ${RegeniefileName} 
 
 echo -e "running step9..."
 #Enter --vcf path_to_your_annotated_vcf 
-./slurm.step9.sh --vcf './step1/FAME.TopSignif_ENSEMBL_withNEAREST.100724.vcf' --RegeniefileName ${RegeniefileName} 
+./slurm.step9.sh --vcf './step1/FAME.TopSignif_ENSEMBL_withNEAREST.100724.vcf' --RegeniefileName ${RegeniefileName} --outputDir ${outputDir}
