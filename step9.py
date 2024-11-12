@@ -325,7 +325,7 @@ condition_mask2 = df_regenie['ID'].str.contains('Mask2')
 condition_mask3 = df_regenie['ID'].str.contains('Mask3')
 condition_mask4 = df_regenie['ID'].str.contains('Mask4')
 condition_af01 = df_regenie['ID'].str.contains('0.01')
-print(list_annot_run == "list_annot_run1") 
+#print(list_annot_run == "list_annot_run1") 
 
 if list_annot_run == "list_annot_run1":
     print('RUNNING run1')
