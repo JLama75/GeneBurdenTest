@@ -501,8 +501,9 @@ def chi_square_test(row):
 
 p=contingency_table.apply(chi_square_test, axis=1)
 output_step2['P_Chi-Square']=p
-#Dir=/data/Segre_Lab/users/jlama/WES_new.ALL_050824/GeneBurden/FAME/step9_to_11/Run2_Count
-Dir=os.path.join(args.output_path, args.output_name + ".tsv")
+out='./step8_to_10'
+Dir=os.path.join(out, args.output_name + ".tsv")
+#Dir=os.path.join(args.output_path, args.output_name + ".tsv")
 print(Dir)
 output_step2.to_csv(Dir, sep='\t', index=None)
 
