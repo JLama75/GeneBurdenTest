@@ -12,9 +12,8 @@ list_annot_run=$1 #list_annot_run=list_annot_run2
 out_name=$2 #Run2_Count, Run3_Count .. so on
 export vcf=$3
 export RegeniefileName=$4
-
+output_path=$5
 regenie_out='./step8_to_10/'${RegeniefileName}'.tsv'
-output_path='./step8_to_10/'
 
 echo $vcf
 echo $regenie_out
