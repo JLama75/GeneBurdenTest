@@ -415,12 +415,12 @@ for annot in list_annot_run:
             list_gene.append(key)
             list_control_GT.append(total[1])
             list_control_nonMiss.append(total[2]) #nonMiss_control
-            list_control_individual.append(len(total['individual_control']))
+            list_control_individual.append(len(total[3]))
             print("control individuals")
             print(total[3])
             print(len(total['individual_control']))
             
-            list_case_individual.append(len(total['individual_case']))
+            list_case_individual.append(len(total[6]))
             print("case individuals")
             print(total[6])
             print(len(total['individual_case']))
