@@ -410,7 +410,7 @@ for annot in list_annot_run:
     list_control_individual=[]
     for key, value in dicts_skato.items():
         subset=summary_GT_case_control_run.loc[summary_GT_case_control_run["SNP"].isin(value)]
-        print("key")
+        
         if subset.empty == False:
             print("summary_GT_case_control_run")
             print(summary_GT_case_control_run)
@@ -421,15 +421,15 @@ for annot in list_annot_run:
             list_gene.append(key)
             list_control_GT.append(total[1])
             list_control_nonMiss.append(total[2]) #nonMiss_control
-            list_control_individual.append(len(total[3]))
+            list_control_individual.append(len(set(total[3])))
             print("control individuals")
             print(total[3])
-            print(len(total['individual_control']))
+            print(len(set(total['individual_control'])))
             
-            list_case_individual.append(len(total[6]))
+            list_case_individual.append(len(set(total[6])))
             print("case individuals")
             print(total[6])
-            print(len(total['individual_case']))
+            print(len(set(total['individual_case'])))
             list_case_GT.append(total[4])
             list_case_nonMiss.append(total[5]) #nonMiss_case
             
