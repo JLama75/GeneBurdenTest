@@ -9,10 +9,10 @@ Pipeline:
 
 Requires to activate VEP conda environment before running scirpt
 
-4. sbatch submit.2_to_4.sh
+4. sbatch submit.2_to_4.sh (will run step2, step3 and step4, user has to input path to annoated vcf within the bash script) For example:
+   
 		→ python step2.py $path_to_annotatedVCF
-		→ python step3.py
-		→ python step4.py
+		
 
 Use jupyter notebook for step 5,7, and 7 to generate AAF, covariates and phenotype files for regenie .
 
