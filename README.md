@@ -1,8 +1,8 @@
 Pipeline:
 
-1. sbatch step1.a.submit.sh
+1. sbatch step1.a.submit.sh (make sure to input the vcf file, file with samples you want to keep from the vcf file, your phenotype file and the monomorphic filter threshold )
 
-		→ python step1.a.py --vcf ${vcf} --keep ${keep} --phenoFile ${pheno} --monoThreshold 0.00093985 
+		→ python step1.a.py --vcf ${your_vcf} --keep ${IDs_to_keep} --phenoFile ${your_phenotype_file} --monoThreshold 0.00093985 
 2. sbatch vep.annot.step.1.b.sh 
 		#User have to specify the name of the output annotated vcf file. For example:
 		export outputFileName=your_annotated.vcf
