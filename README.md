@@ -5,7 +5,7 @@ Pipeline:
 		→ python step1.a.py --vcf ${vcf} --keep ${keep} --phenoFile ${pheno} --monoThreshold 0.00093985 
 2. sbatch vep.annot.step.1.b.sh 
 		#User have to specify the name of the output annotated vcf file. For example:
-		export outputFileName=SIOP_FAME_annotated.101524.vcf
+		export outputFileName=your_annotated.vcf
 		#Requires to activate VEP conda environment before running scirpt
 
 3. sbatch submit.2_to_4.sh
