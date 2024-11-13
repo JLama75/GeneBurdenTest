@@ -9,7 +9,7 @@ Pipeline:
 
 Requires to activate VEP conda environment before running scirpt
 
-4. sbatch submit.2_to_4.sh (will run step2, step3 and step4, user has to input path to annoated vcf within the bash script) For example:
+4. sbatch submit.2_to_4.sh (will run step2, step3 and step4, user has to input path to annotated vcf within the bash script) For example:
    
 		→ python step2.py $path_to_annotatedVCF
 		
