@@ -156,7 +156,7 @@ with open(GT_control) as inny:
         
         if temp_id=='ID':
             list_samples=temp_GT
-        else:
+        else:#updated the following code so that it counts all indices/individuals with deleterious mutation. Before the code was only counting one individual
             if temp_GT.count('0/0') < temp_GT.count('1/1'):
                 # Find all indices for '0/1', '1/0', '1/1'
                 index = [i for i, gt in enumerate(temp_GT) if gt in ['0/1', '1/0', '1/1']]
@@ -197,16 +197,15 @@ with open(GT_case) as inny:
         
         if temp_id == 'ID':
             list_samples = temp_GT
-        else:
+        else: #updated the following code so that it counts all indices/individuals with deleterious mutation. Before the code was only counting one individual not considering the minor allele
             #if temp_id == '6:31034713:C:A':
                 #print("6:31034713:C:A")
                 #print(temp_GT)
-
-            # Find all indices for '0/1', '1/0', '1/1'
-            index = [i for i, gt in enumerate(temp_GT) if gt in ['0/1', '1/0', '1/1']]
-            
-            #if temp_id == '6:31034713:C:A':
-                #print("Final index", index)
+            if temp_GT.count('0/0') < temp_GT.count('1/1'):
+                # Find all indices for '0/1', '1/0', '1/1'
+                index = [i for i, gt in enumerate(temp_GT) if gt in ['0/1', '1/0', '1/1']]
+            elif temp_GT.count('0/0') >= temp_GT.count('1/1'):
+                index = [i for i, gt in enumerate(temp_GT) if gt in ['0/1', '1/0', '0/0']]
             
             list_individual_curr = [list_samples[i] for i in index]
             list_individual.append(list_individual_curr)
@@ -215,8 +214,12 @@ with open(GT_case) as inny:
                 #print("individual", list_individual_curr)
 
             # Calculating counts
-            count_GT = (
-                temp_GT.count('0/1') + temp_GT.count('1/0') + (temp_GT.count('0/0') * 2 if temp_GT.count('0/0') < temp_GT.count('1/1') else temp_GT.count('1/1') * 2))
+            # Calculating counts
+            if temp_GT.count('0/0') < temp_GT.count('1/1'):
+                count_GT=temp_GT.count('0/1')+temp_GT.count('1/0')+temp_GT.count('0/0')*2
+            elif temp_GT.count('0/0') >= temp_GT.count('1/1'):
+                count_GT=temp_GT.count('0/1')+temp_GT.count('1/0')+temp_GT.count('1/1')*2
+                
             count_nonMiss = 2 * (temp_GT.count('0/1') + temp_GT.count('1/0') + temp_GT.count('1/1') + temp_GT.count('0/0'))
             
             list_case_GT.append(count_GT)
