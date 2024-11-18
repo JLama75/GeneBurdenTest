@@ -157,7 +157,7 @@ with open(GT_control) as inny:
         if temp_id=='ID':
             list_samples=temp_GT
         else:#updated the following code so that it counts all indices/individuals with deleterious mutation. Before the code was only counting one individual
-            if temp_GT.count('0/0') < temp_GT.count('1/1'):
+            if temp_GT.count('0/0') < temp_GT.count('1/1'): #Make sure you are counting for minor allele
                 # Find all indices for '0/1', '1/0', '1/1'
                 index = [i for i, gt in enumerate(temp_GT) if gt in ['0/1', '1/0', '0/0']]
             elif temp_GT.count('0/0') >= temp_GT.count('1/1'):
@@ -201,9 +201,9 @@ with open(GT_case) as inny:
             #if temp_id == '6:31034713:C:A':
                 #print("6:31034713:C:A")
                 #print(temp_GT)
-            if temp_GT.count('0/0') < temp_GT.count('1/1'):
+            if temp_GT.count('0/0') < temp_GT.count('1/1'): #Make sure you are counting for minor allele
                 # Find all indices for '0/1', '1/0', '1/1'
-                index = [i for i, gt in enumerate(temp_GT) if gt in ['0/1', '1/0', '0/0']]
+                index = [i for i, gt in enumerate(temp_GT) if gt in ['0/1', '1/0', '0/0']] 
             elif temp_GT.count('0/0') >= temp_GT.count('1/1'):
                 index = [i for i, gt in enumerate(temp_GT) if gt in ['0/1', '1/0', '1/1']]
             
