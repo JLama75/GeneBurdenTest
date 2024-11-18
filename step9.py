@@ -159,9 +159,9 @@ with open(GT_control) as inny:
         else:#updated the following code so that it counts all indices/individuals with deleterious mutation. Before the code was only counting one individual
             if temp_GT.count('0/0') < temp_GT.count('1/1'):
                 # Find all indices for '0/1', '1/0', '1/1'
-                index = [i for i, gt in enumerate(temp_GT) if gt in ['0/1', '1/0', '1/1']]
-            elif temp_GT.count('0/0') >= temp_GT.count('1/1'):
                 index = [i for i, gt in enumerate(temp_GT) if gt in ['0/1', '1/0', '0/0']]
+            elif temp_GT.count('0/0') >= temp_GT.count('1/1'):
+                index = [i for i, gt in enumerate(temp_GT) if gt in ['0/1', '1/0', '1/1']]
 
             list_individual_curr = [list_samples[i] for i in index]
             list_individual.append(list_individual_curr)
@@ -203,9 +203,9 @@ with open(GT_case) as inny:
                 #print(temp_GT)
             if temp_GT.count('0/0') < temp_GT.count('1/1'):
                 # Find all indices for '0/1', '1/0', '1/1'
-                index = [i for i, gt in enumerate(temp_GT) if gt in ['0/1', '1/0', '1/1']]
-            elif temp_GT.count('0/0') >= temp_GT.count('1/1'):
                 index = [i for i, gt in enumerate(temp_GT) if gt in ['0/1', '1/0', '0/0']]
+            elif temp_GT.count('0/0') >= temp_GT.count('1/1'):
+                index = [i for i, gt in enumerate(temp_GT) if gt in ['0/1', '1/0', '1/1']]
             
             list_individual_curr = [list_samples[i] for i in index]
             list_individual.append(list_individual_curr)
