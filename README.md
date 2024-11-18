@@ -20,9 +20,9 @@ Use jupyter notebook for step 5,7, and 7 to generate AAF, covariates and phenoty
 
 6. sbatch submit.step8_to_9.sh (User has to specify the name of the output file from Regenie ran in previous step) For example: 
    
-    		  export RegeniefileName='SIOP_FAME.ALL.101524.responder'
+   		export RegeniefileName='SIOP_FAME.ALL.101524.responder'
    
-		  python step8.py --regenie './step7/'${RegeniefileName}'.regenie' --outFile  './step7/'${RegeniefileName}'.tsv'
+		python step8.py --regenie './step7/'${RegeniefileName}'.regenie' --outFile  './step7/'${RegeniefileName}'.tsv'
    
    This will automatically submit 4 slurm jobs for 4 masks in parallel #User should edit the path to annotated vcf file and regenie output file in the Step.9.sh script. For Example:
    
