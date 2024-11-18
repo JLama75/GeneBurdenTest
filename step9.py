@@ -419,17 +419,19 @@ for annot in list_annot_run:
             print(summary_GT_case_control_run)
             total=subset.sum()
             print("total")
-            print(total)
+            #print(total)
             
             list_gene.append(key)
             list_control_GT.append(total[1])
             list_control_nonMiss.append(total[2]) #nonMiss_control
-            list_control_individual.append(len(set(total[3])))
+            list_control_individual.append(len(set(total[3]))) #Updated the code[set()] so that it does not count the same individuals twice. Before the code might count same individual having mutations in different variants might be counted twice. 
+            #But this new update needs to be reviewed if it works.
+            
             print("control individuals")
             print(total[3])
             print(len(set(total['individual_control'])))
             
-            list_case_individual.append(len(set(total[6])))
+            list_case_individual.append(len(set(total[6]))) ##Updated the code[set()]
             print("case individuals")
             print(total[6])
             print(len(set(total['individual_case'])))
